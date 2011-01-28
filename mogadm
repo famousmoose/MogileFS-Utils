@@ -476,7 +476,7 @@ sub cmd_check {
             printf "  [%2d] %-7s", $hostid, "dev$devid";
 
             my $usage = get($url . "/dev$devid/usage");
-            if (defined $usage) {
+            if ((defined $usage) && ($usage ne '')) {
                 my %data = ( map { split(/:\s+/, $_) } split(/\r?\n/, $usage) );
                 foreach (qw(time used total avail)) {
                     $data{$_} = 0 if (!$data{$_} || 
